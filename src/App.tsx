@@ -15,7 +15,7 @@ const App: React.FC = () => {
   const renderSection = () => {
     switch (activeSection) {
       case 'home':
-        return <Home />;
+        return <Home setActiveSection={setActiveSection} />;
       case 'about':
         return <About />;
       case 'services':
@@ -23,7 +23,7 @@ const App: React.FC = () => {
       case 'contact':
         return <Contact />;
       default:
-        return <Home />;
+        return <Home setActiveSection={setActiveSection} />;
     }
   };
 

@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useScrollAnimation, getStaggeredDelay } from '../hooks/useScrollAnimation';
+
+type Section = 'home' | 'about' | 'services' | 'contact';
 
 interface Experience {
   company: string;
@@ -26,10 +29,65 @@ interface UpcomingProject {
   status: string;
 }
 
-const Home: React.FC = () => {
+interface HomeProps {
+  setActiveSection?: (section: Section) => void;
+}
+
+const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
   const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null);
   const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null);
+  const vantaRef = useRef<HTMLDivElement>(null);
+  const vantaEffect = useRef<any>(null);
+  
+  // Animation hooks
+  const heroAnimation = useScrollAnimation({ delay: 100 });
+  const experienceAnimation = useScrollAnimation({ delay: 200 });
+  const achievementsAnimation = useScrollAnimation({ delay: 300 });
+  const projectsAnimation = useScrollAnimation({ delay: 400 });
 
+  // Initialize Vanta effect
+  useEffect(() => {
+    if (!vantaEffect.current && vantaRef.current) {
+      // Check if VANTA is available
+      if (typeof window !== 'undefined' && (window as any).VANTA && (window as any).THREE) {
+        vantaEffect.current = (window as any).VANTA.HALO({
+          el: vantaRef.current,
+          THREE: (window as any).THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          baseColor: 0x6745ca,
+          backgroundColor: 0x0a0a0a, // Darker background for better contrast
+          amplitudeFactor: 0.8, // Reduced intensity
+          xOffset: 0.00,
+          yOffset: -0.09,
+          size: 0.8 // Smaller size for less intensity
+        });
+      }
+    }
+    
+    return () => {
+      if (vantaEffect.current) {
+        vantaEffect.current.destroy();
+        vantaEffect.current = null;
+      }
+    };
+  }, []);
+
+  // Update Vanta effect on resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (vantaEffect.current) {
+        vantaEffect.current.resize();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
   const experiences: Experience[] = [
     {
       company: "Omega Medical Billing Inc.",
@@ -216,42 +274,56 @@ const Home: React.FC = () => {
   return (
     <div className="home-container">
       {/* Hero Section */}
-      <section className="hero-gradient text-white py-5">
-        <div className="container">
-          <div className="row align-items-center min-vh-75">
-            <div className="col-lg-8">
-              <h1 className="display-4 fw-bold mb-4">
-                Hi, I'm <span className="text-warning">Archit Benipal</span>
+      <section 
+        ref={vantaRef}
+        className="text-white py-5 position-relative overflow-hidden min-vh-100 d-flex align-items-center"
+        style={{ background: '#0a0a0a' }}
+      >
+        {/* Enhanced overlay for better text readability */}
+        <div 
+          className="position-absolute top-0 start-0 w-100 h-100"
+          style={{
+            background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5))',
+            zIndex: 2,
+            pointerEvents: 'none'
+          }}
+        ></div>
+        
+        <div className="container position-relative" style={{ zIndex: 3 }}>
+          <div className="row justify-content-center text-center">
+            <div 
+              ref={heroAnimation.elementRef}
+              className={`col-lg-10 ${heroAnimation.isVisible ? 'bounce-in-left' : 'opacity-0'}`}
+            >
+              <h1 className="display-2 fw-bold mb-4 bounce-in delay-100" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                Hi, I'm <span className="text-warning pulse-animation">Archit Benipal</span>
               </h1>
-              <h2 className="h3 mb-4 text-light">Software Developer & Full Stack Developer</h2>
-              <p className="lead mb-4">
+              <h2 className="h2 mb-4 text-light" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>Software Developer & Full Stack Developer</h2>
+              <p className="lead mb-5 fs-4" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.6)' }}>
                 Software developer with 6+ years of experience creating innovative software solutions and managing complete application lifecycles using modern technologies. Expert in frontend development with strong background in cybersecurity and scalable system architecture.
               </p>
-              <div className="d-flex flex-wrap gap-2 mb-4">
+              <div className="d-flex flex-wrap gap-2 mb-5 justify-content-center">
                 {skills.slice(0, 6).map((skill, index) => (
-                  <span key={index} className="badge bg-light text-dark px-3 py-2">
+                  <span key={index} className="badge bg-light text-dark px-4 py-3 fs-6">
                     {skill}
                   </span>
                 ))}
               </div>
-              <div className="d-flex gap-3">
-                <a 
-                  href="mailto:architbenipal77@gmail.com" 
-                  className="btn btn-outline-light btn-lg px-4"
+              <div className="d-flex gap-3 justify-content-center">
+                <button 
+                  onClick={() => setActiveSection?.('contact')}
+                  className="btn btn-warning btn-lg px-5 py-3 fw-bold"
                 >
                   <i className="fas fa-envelope me-2"></i>
                   Contact Me
-                </a>
-              </div>
-            </div>
-            <div className="col-lg-4 text-center">
-              <div className="profile-image-container">
-                <img 
-                  src="https://via.placeholder.com/300x300/667eea/ffffff?text=Archit+Benipal" 
-                  alt="Archit Benipal Profile" 
-                  className="img-fluid rounded-circle shadow-lg"
-                  style={{ maxWidth: '250px' }}
-                />
+                </button>
+                <button 
+                  onClick={() => setActiveSection?.('about')}
+                  className="btn btn-outline-light btn-lg px-5 py-3 fw-bold"
+                >
+                  <i className="fas fa-user me-2"></i>
+                  About Me
+                </button>
               </div>
             </div>
           </div>
@@ -269,7 +341,7 @@ const Home: React.FC = () => {
             {experiences.map((exp, index) => (
               <div key={index} className="col-lg-12 mb-4">
                 <div 
-                  className="card card-hover border-0 shadow-sm"
+                  className={`card card-hover border-0 shadow-sm bounce-in-up ${getStaggeredDelay(index)}`}
                   style={{ cursor: 'pointer' }}
                   onClick={() => setSelectedExperience(exp)}
                   data-bs-toggle="modal"
@@ -323,14 +395,14 @@ const Home: React.FC = () => {
             {achievements.map((achievement, index) => (
               <div key={index} className="col-lg-3 col-md-6 mb-4">
                 <div 
-                  className="card text-center card-hover border-0 shadow-sm h-100"
+                  className={`card text-center card-hover border-0 shadow-sm h-100 bounce-in ${getStaggeredDelay(index)} bounce-hover`}
                   style={{ cursor: 'pointer' }}
                   onClick={() => setSelectedAchievement(achievement)}
                   data-bs-toggle="modal"
                   data-bs-target="#achievementModal"
                 >
                   <div className="card-body">
-                    <div className="achievement-icon mb-3">
+                    <div className="achievement-icon mb-3 pulse-animation">
                       <i className={`${achievement.icon} fa-3x text-primary`}></i>
                     </div>
                     <h6 className="card-title">{achievement.title}</h6>

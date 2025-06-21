@@ -139,19 +139,6 @@ const Footer: React.FC<FooterProps> = ({ setActiveSection }) => {
               © 2025 Archit Benipal. All rights reserved.
             </p>
           </div>
-          <div className="col-md-6 text-md-end">
-            <div className="d-flex justify-content-md-end gap-3">
-              <a href="#privacy" className="text-muted text-decoration-none small">
-                Privacy Policy
-              </a>
-              <a href="#terms" className="text-muted text-decoration-none small">
-                Terms of Service
-              </a>
-              <a href="#sitemap" className="text-muted text-decoration-none small">
-                Sitemap
-              </a>
-            </div>
-          </div>
         </div>
 
         {/* Back to Top Button */}
