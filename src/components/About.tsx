@@ -109,14 +109,6 @@ const About: React.FC = () => {
     }
   ];
 
-  const interests = [
-    { name: "Open Source Contribution", icon: "fab fa-github" },
-    { name: "AI & Machine Learning", icon: "fas fa-robot" },
-    { name: "Tech Writing", icon: "fas fa-pen" },
-    { name: "Mentoring", icon: "fas fa-chalkboard-teacher" },
-    { name: "Photography", icon: "fas fa-camera" },
-    { name: "Gaming", icon: "fas fa-gamepad" }
-  ];
 
   return (
     <div className="about-container">

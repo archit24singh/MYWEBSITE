@@ -5,7 +5,6 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ setActiveSection }) => {
-  const currentYear = new Date().getFullYear();
 
   const socialLinks = [
     { 

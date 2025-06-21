@@ -79,7 +79,7 @@ export const useScrollAnimation = (
  * Hook for batch animating multiple elements with staggered delays
  */
 export const useStaggeredAnimation = (
-  count: number,
+  _count: number,
   baseDelay: number = 0,
   staggerDelay: number = 100
 ) => {

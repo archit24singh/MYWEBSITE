@@ -41,10 +41,6 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
   
   // Animation hooks
   const heroAnimation = useScrollAnimation({ delay: 100 });
-  const experienceAnimation = useScrollAnimation({ delay: 200 });
-  const achievementsAnimation = useScrollAnimation({ delay: 300 });
-  const projectsAnimation = useScrollAnimation({ delay: 400 });
-
   // Initialize Vanta effect
   useEffect(() => {
     if (!vantaEffect.current && vantaRef.current) {

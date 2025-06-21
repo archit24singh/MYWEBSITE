@@ -20,7 +20,7 @@ interface SocialLink {
 
 const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [, setIsScrolled] = useState(false);
 
   // Handle scroll effect
   useEffect(() => {
