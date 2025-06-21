@@ -1,6 +1,6 @@
 [build]
   # Build command for your React app
-  command = "npm run build"
+  command = "npm ci && npm run build"
   
   # Directory where the build output is located
   publish = "dist"
@@ -9,6 +9,7 @@
   [build.environment]
     NODE_VERSION = "18"
     NPM_VERSION = "9"
+    CI = "true"
 
 # Redirect rules for SPA (Single Page Application)
 [[redirects]]
