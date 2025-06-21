@@ -102,7 +102,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection }) => {
             onClick={handleBrandClick}
           >
             <i className="fas fa-code me-2"></i>
-            Archit Benipal
+            
           </button>
 
           {/* Desktop Navigation - Always visible on large screens */}
