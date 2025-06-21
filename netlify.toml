@@ -1,0 +1,18 @@
+# netlify.toml
+
+[build]
+  # your existing build step
+  command   = "npm run build"
+  # output dir as seen in your logs
+  publish   = "dist"
+
+[build.environment]
+  # make sure devDependencies (typescript, etc.) are installed
+  NPM_FLAGS = "--include=dev"
+
+# SPA fallback
+[[redirects]]
+  from      = "/*"
+  to        = "/index.html"
+  status    = 200
+  force     = true
