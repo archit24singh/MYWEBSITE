@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Personal profile website showcasing skills, projects, and blog posts in web development, software engineering, and AI." />
+    <meta name="keywords" content="web developer, software engineer, React, TypeScript, Node.js, AI, machine learning" />
+    <meta name="author" content="Your Name" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Your Name - Full Stack Developer" />
+    <meta property="og:description" content="Personal profile website showcasing skills, projects, and blog posts in web development, software engineering, and AI." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourwebsite.com" />
+    <meta property="og:image" content="https://yourwebsite.com/og-image.jpg" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Your Name - Full Stack Developer" />
+    <meta name="twitter:description" content="Personal profile website showcasing skills, projects, and blog posts in web development, software engineering, and AI." />
+    <meta name="twitter:image" content="https://yourwebsite.com/twitter-image.jpg" />
+    
+    <!-- Preload Important Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#eff6ff',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
+    
+    <title>Your Name - Full Stack Developer & AI Enthusiast</title>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Your Name",
+      "jobTitle": "Full Stack Developer",
+      "description": "Passionate full-stack developer with expertise in React, TypeScript, Node.js, and AI technologies.",
+      "url": "https://yourwebsite.com",
+      "sameAs": [
+        "https://github.com/yourusername",
+        "https://linkedin.com/in/yourusername",
+        "https://instagram.com/yourusername"
+      ],
+      "knowsAbout": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Python",
+        "Artificial Intelligence",
+        "Web Development",
+        "Software Engineering"
+      ],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Your University"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-DY4lXVNz.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cj5y2jO3.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <!-- Bootstrap JavaScript Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Vite Development Script -->
+    
+    <!-- Service Worker Registration (Optional) -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+    
+    <!-- Google Analytics (Replace with your tracking ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_TRACKING_ID');
+    </script>
+  </body>
+</html>
