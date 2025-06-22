@@ -1,6 +1,51 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useScrollAnimation, getStaggeredDelay } from '../hooks/useScrollAnimation';
 
+// Typing Animation Component
+interface TypingAnimationProps {
+  text: string;
+  speed?: number;
+  delay?: number;
+  className?: string;
+  onComplete?: () => void;
+}
+
+const TypingAnimation: React.FC<TypingAnimationProps> = ({ 
+  text, 
+  speed = 100, 
+  delay = 0, 
+  className = "",
+  onComplete = () => {} 
+}) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timer = setTimeout(() => {
+        setDisplayedText(prev => prev + text[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, delay + currentIndex * speed);
+
+      return () => clearTimeout(timer);
+    } else if (!isComplete) {
+      setIsComplete(true);
+      onComplete();
+    }
+    
+    // Return undefined explicitly for the case where neither condition is met
+    return undefined;
+  }, [currentIndex, text, speed, delay, isComplete, onComplete]);
+
+  return (
+    <span className={className}>
+      {displayedText}
+      {!isComplete && <span className="typing-cursor">|</span>}
+    </span>
+  );
+};
+
 type Section = 'home' | 'about' | 'services' | 'contact';
 
 interface Experience {
@@ -41,6 +86,7 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
   
   // Animation hooks
   const heroAnimation = useScrollAnimation({ delay: 100 });
+
   // Initialize Vanta effect
   useEffect(() => {
     if (!vantaEffect.current && vantaRef.current) {
@@ -269,7 +315,7 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
 
   return (
     <div className="home-container">
-      {/* Hero Section */}
+      {/* Hero Section with Typing Animation */}
       <section 
         ref={vantaRef}
         className="text-white py-5 position-relative overflow-hidden min-vh-100 d-flex align-items-center"
@@ -291,13 +337,28 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
               ref={heroAnimation.elementRef}
               className={`col-lg-10 ${heroAnimation.isVisible ? 'bounce-in-left' : 'opacity-0'}`}
             >
-              <h1 className="display-2 fw-bold mb-4 bounce-in delay-100" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
-                Hi, I'm <span className="text-warning pulse-animation">Archit Benipal</span>
+              {/* Main Title with Typing Animation - Only Name */}
+              <h1 className="display-2 fw-bold mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                Hi, I'm{' '}
+                <TypingAnimation
+                  text="Archit Benipal"
+                  speed={30}
+                  delay={100}
+                  className="text-warning pulse-animation"
+                />
               </h1>
-              <h2 className="h2 mb-4 text-light" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>Software Developer & Full Stack Developer</h2>
+
+              {/* Subtitle - No Animation */}
+              <h2 className="h2 mb-4 text-light" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
+                Software Developer & Full Stack Developer
+              </h2>
+
+              {/* Description - No Animation */}
               <p className="lead mb-5 fs-4" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.6)' }}>
                 Software developer with 6+ years of experience creating innovative software solutions and managing complete application lifecycles using modern technologies. Expert in frontend development with strong background in cybersecurity and scalable system architecture.
               </p>
+
+              {/* Skills - No Animation */}
               <div className="d-flex flex-wrap gap-2 mb-5 justify-content-center">
                 {skills.slice(0, 6).map((skill, index) => (
                   <span key={index} className="badge bg-light text-dark px-4 py-3 fs-6">
@@ -305,17 +366,19 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
                   </span>
                 ))}
               </div>
+
+              {/* Buttons - No Animation */}
               <div className="d-flex gap-3 justify-content-center">
                 <button 
                   onClick={() => setActiveSection?.('contact')}
-                  className="btn btn-warning btn-lg px-5 py-3 fw-bold"
+                  className="btn btn-warning btn-lg px-5 py-3 fw-bold button-hover"
                 >
                   <i className="fas fa-envelope me-2"></i>
                   Contact Me
                 </button>
                 <button 
                   onClick={() => setActiveSection?.('about')}
-                  className="btn btn-outline-light btn-lg px-5 py-3 fw-bold"
+                  className="btn btn-outline-light btn-lg px-5 py-3 fw-bold button-hover"
                 >
                   <i className="fas fa-user me-2"></i>
                   About Me
@@ -571,6 +634,39 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           </div>
         </div>
       </div>
+
+      {/* CSS Styles for Typing Animation */}
+      <style>{`
+        .typing-cursor {
+          animation: blink 0.8s infinite;
+          color: #ffc107;
+          font-weight: bold;
+        }
+
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+
+        .pulse-animation {
+          animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+          100% { transform: scale(1); }
+        }
+
+        .button-hover {
+          transition: all 0.3s ease;
+        }
+
+        .button-hover:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+      `}</style>
     </div>
   );
 };
