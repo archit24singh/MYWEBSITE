@@ -136,7 +136,7 @@ const About: React.FC = () => {
                 <div className="row text-center">
                   <div className="col-4">
                     <div className="stat-item">
-                      <h3 className="display-6 fw-bold text-warning">6+</h3>
+                      <h3 className="display-6 fw-bold text-warning">8+</h3>
                       <p className="mb-0">Years Experience</p>
                     </div>
                   </div>

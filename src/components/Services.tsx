@@ -284,7 +284,7 @@ const Services: React.FC<ServicesProps> = ({ setActiveSection }) => {
             </p>
             <div className="row text-center">
               <div className="col-md-3">
-                <h3 className="display-6 fw-bold text-warning">6+</h3>
+                <h3 className="display-6 fw-bold text-warning">8+</h3>
                 <p>Years Experience</p>
               </div>
               <div className="col-md-3">

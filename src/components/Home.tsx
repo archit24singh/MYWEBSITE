@@ -355,7 +355,7 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
 
               {/* Description - No Animation */}
               <p className="lead mb-5 fs-4" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.6)' }}>
-                Software developer with 6+ years of experience creating innovative software solutions and managing complete application lifecycles using modern technologies. Expert in frontend development with strong background in cybersecurity and scalable system architecture.
+                Software developer with 8+ years of experience creating innovative software solutions and managing complete application lifecycles using modern technologies. Expert in frontend development with strong background in cybersecurity and scalable system architecture.
               </p>
 
               {/* Skills - No Animation */}
