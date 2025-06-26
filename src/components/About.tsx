@@ -119,7 +119,7 @@ const About: React.FC = () => {
             <div className="col-lg-6">
               <h1 className="display-5 fw-bold mb-4">About Me</h1>
               <p className="lead mb-4">
-                I'm a passionate full-stack developer with over 6 years of experience creating 
+                I'm a passionate full-stack developer with over 8 years of experience creating 
                 innovative web solutions. I love working at the intersection of technology and 
                 user experience, always striving to build applications that are not only 
                 functional but also delightful to use.
