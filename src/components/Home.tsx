@@ -212,7 +212,7 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
       position: "Fullstack Developer Analyst",
       duration: "08/2017 - 08/2021",
       description: "Built and maintained web applications while learning modern development practices and agile methodologies.",
-      technologies: ["React", "JavaScript","TypeScript", "HTML5", "CSS3", "Python", "Django","Java","OpenAI","TensorFlow","AI/ML"],
+      technologies: ["React", "AI/ML","TypeScript", "HTML5", "CSS3", "Python", "Django","Java","OpenAI","TensorFlow"],
       detailedDescription: [
         "Developed high-performance web applications for trading platforms using React, JavaScript, HTML5, and CSS3 with strict user experience requirements",
         "Built responsive UI components translating complex business processes into intuitive user interfaces for financial applications",
