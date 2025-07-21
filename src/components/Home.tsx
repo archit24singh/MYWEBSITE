@@ -301,8 +301,8 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
       status: "Planning"
     },
     {
-      title: "Cybersecurity Compliance Tool",
-      description: "Developing a HIPAA compliance monitoring system with automated security assessments and reporting.",
+      title: "Healthcare Compliance Monitoring System",
+      description: "Developing a HIPAA compliant system for monitoring internal issues reporting.",
       technologies: ["React", "Python", "Security APIs", "Compliance Frameworks"],
       status: "Design Phase"
     }
