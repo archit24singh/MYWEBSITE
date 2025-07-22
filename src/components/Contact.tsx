@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ProfileCard from './ProfileCard';
 
 interface ContactForm {
   name: string;
@@ -79,43 +80,72 @@ const Contact: React.FC = () => {
     }
   };
 
+  const handleContactClick = () => {
+    // Scroll to contact form or show contact modal
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="contact-container">
-      {/* Contact Hero Section */}
-      <section className="py-5 bg-dark text-white">
+      {/* Contact Hero Section with ProfileCard - PURE BLACK BACKGROUND */}
+      <section className="py-5 text-white" style={{ backgroundColor: '#000000' }}>
         <div className="container">
-          <div className="text-center">
-            <h1 className="display-5 fw-bold mb-4">Get In Touch</h1>
-            <p className="lead mb-4">
-              Ready to start your next project? Let's discuss how I can help bring your ideas to life.
-            </p>
-            <div className="row text-center">
-              <div className="col-md-4">
-                <h3 className="display-6 fw-bold text-warning">24hrs</h3>
-                <p>Response Time</p>
-              </div>
-              <div className="col-md-4">
-                <h3 className="display-6 fw-bold text-warning">100%</h3>
-                <p>Client Satisfaction</p>
-              </div>
-              <div className="col-md-4">
-                <h3 className="display-6 fw-bold text-warning">6+</h3>
-                <p>Years Experience</p>
+          <div className="row align-items-center">
+            {/* Left side - ProfileCard */}
+            <div className="col-lg-6 d-flex justify-content-center mb-4 mb-lg-0">
+              <ProfileCard
+                name="Archit Singh"
+                title="Full Stack Developer"
+                handle="archit24singh"
+                status="Available for Projects"
+                contactText="Contact Me"
+                avatarUrl="../../profile.jpg" // Replace with your actual avatar URL
+                showUserInfo={true}
+                enableTilt={true}
+                enableMobileTilt={false}
+                onContactClick={handleContactClick}
+              />
+            </div>
+            
+            {/* Right side - Hero Content */}
+            <div className="col-lg-6">
+              <div className="text-center text-lg-start">
+                <h1 className="display-5 fw-bold mb-4">Get In Touch</h1>
+                <p className="lead mb-4">
+                  Ready to start your next project? Let's discuss how I can help bring your ideas to life.
+                </p>
+                <div className="row text-center">
+                  <div className="col-md-4 mb-3">
+                    <h3 className="display-6 fw-bold text-warning">24hrs</h3>
+                    <p className="mb-0">Response Time</p>
+                  </div>
+                  <div className="col-md-4 mb-3">
+                    <h3 className="display-6 fw-bold text-warning">100%</h3>
+                    <p className="mb-0">Client Satisfaction</p>
+                  </div>
+                  <div className="col-md-4 mb-3">
+                    <h3 className="display-6 fw-bold text-warning">6+</h3>
+                    <p className="mb-0">Years Experience</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Form and Info */}
-      <section className="py-5">
+      {/* Contact Form Section */}
+      <section className="py-5" id="contact-form">
         <div className="container">
           <div className="row justify-content-center">
             {/* Contact Form */}
             <div className="col-lg-8 mb-5">
               <div className="card border-0 shadow-lg">
                 <div className="card-body p-5">
-                  <h3 className="card-title text-primary mb-4">
+                  <h3 className="card-title text-primary mb-4 text-center">
                     <i className="fas fa-paper-plane me-2"></i>
                     Send Me a Message
                   </h3>

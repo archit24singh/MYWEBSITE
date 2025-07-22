@@ -30,7 +30,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
-      <main className="min-h-screen">
+      <main className="min-h-screen" style={{ paddingTop: '70px' }}>
         {renderSection()}
       </main>
       <Footer setActiveSection={setActiveSection} />

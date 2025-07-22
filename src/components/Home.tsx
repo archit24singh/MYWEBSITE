@@ -1,6 +1,196 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useScrollAnimation, getStaggeredDelay } from '../hooks/useScrollAnimation';
 
+// TiltedExperienceCard Component with 3D animations
+interface TiltedExperienceCardProps {
+  experience: Experience;
+  onClick: () => void;
+  index: number;
+}
+
+const TiltedExperienceCard: React.FC<TiltedExperienceCardProps> = ({
+  experience,
+  onClick,
+  index
+}) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+  const [scale, setScale] = useState(1);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+
+    const rect = cardRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const rotateAmplitude = 8; // Gentle rotation for professional look
+    const rotationY = ((e.clientX - centerX) / (rect.width / 2)) * rotateAmplitude;
+    const rotationX = ((centerY - e.clientY) / (rect.height / 2)) * rotateAmplitude;
+
+    setRotateX(rotationX);
+    setRotateY(rotationY);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    setScale(1.02); // Subtle scale for professional appearance
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setScale(1);
+    setRotateX(0);
+    setRotateY(0);
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      className={`tilted-experience-card card border-0 shadow-sm bounce-in-up ${getStaggeredDelay(index)}`}
+      style={{
+        cursor: 'pointer',
+        perspective: '1000px',
+        transformStyle: 'preserve-3d',
+        transition: isHovered ? 'none' : 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+        transform: `
+          rotateX(${rotateX}deg) 
+          rotateY(${rotateY}deg) 
+          scale(${scale})
+        `,
+        willChange: 'transform',
+        backfaceVisibility: 'hidden',
+        background: isHovered 
+          ? 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'
+          : 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+        borderLeft: isHovered ? '5px solid #0056b3' : '4px solid #007bff',
+        boxShadow: isHovered 
+          ? '0 15px 35px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.1)'
+          : '0 4px 12px rgba(0, 0, 0, 0.1)',
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={onClick}
+      data-bs-toggle="modal"
+      data-bs-target="#experienceModal"
+    >
+      <div className="card-body">
+        <div className="row align-items-center">
+          <div className="col-md-8">
+            <div className="d-flex align-items-center mb-3">
+              <div className="experience-icon me-3">
+                <i className="fas fa-briefcase fa-2x text-primary" 
+                   style={{ 
+                     transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1)',
+                     transition: 'all 0.3s ease'
+                   }}
+                ></i>
+              </div>
+              <div>
+                <h5 className="card-title text-primary fw-bold mb-1">{experience.position}</h5>
+                <h6 className="text-secondary mb-0">{experience.company}</h6>
+              </div>
+            </div>
+            <p className="card-text text-muted mb-3">{experience.description}</p>
+            
+            {/* Key highlights preview */}
+            <div className="mb-3">
+              <h6 className="fw-bold text-dark mb-2 small">Key Highlights:</h6>
+              <ul className="list-unstyled mb-0">
+                {experience.detailedDescription.slice(0, 2).map((item, idx) => (
+                  <li key={idx} className="mb-1 small text-muted">
+                    <i className="fas fa-check-circle text-success me-2"></i>
+                    {item.length > 100 ? `${item.substring(0, 100)}...` : item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          
+          <div className="col-md-4 text-md-end">
+            <div className="mb-3">
+              <span className="badge bg-primary fs-6 px-3 py-2"
+                    style={{
+                      transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
+                      transition: 'all 0.3s ease',
+                      boxShadow: isHovered ? '0 4px 8px rgba(0, 123, 255, 0.3)' : 'none'
+                    }}>
+                {experience.duration}
+              </span>
+            </div>
+            
+            {/* Technologies */}
+            <div className="mb-4">
+              <h6 className="fw-bold text-dark mb-2 small">Technologies:</h6>
+              <div className="d-flex flex-wrap gap-2 justify-content-md-end">
+                {experience.technologies.slice(0, 4).map((tech, techIndex) => (
+                  <span key={techIndex} 
+                        className="badge bg-secondary small"
+                        style={{
+                          transform: isHovered ? 'translateY(-1px) scale(1.05)' : 'translateY(0) scale(1)',
+                          transition: `all 0.3s ease ${techIndex * 0.1}s`,
+                          background: 'linear-gradient(45deg, #6c757d, #495057)'
+                        }}>
+                    {tech}
+                  </span>
+                ))}
+                {experience.technologies.length > 4 && (
+                  <span className="badge bg-light text-dark small">
+                    +{experience.technologies.length - 4}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Experience number indicator */}
+            <div className="text-center">
+              <div className="experience-number"
+                   style={{
+                     width: '40px',
+                     height: '40px',
+                     borderRadius: '50%',
+                     background: 'linear-gradient(135deg, #007bff, #0056b3)',
+                     color: 'white',
+                     display: 'flex',
+                     alignItems: 'center',
+                     justifyContent: 'center',
+                     fontSize: '1.2rem',
+                     fontWeight: 'bold',
+                     marginLeft: 'auto',
+                     marginRight: 'auto',
+                     marginBottom: '1rem',
+                     transform: isHovered ? 'scale(1.1) rotate(360deg)' : 'scale(1) rotate(0deg)',
+                     transition: 'all 0.6s ease',
+                     boxShadow: isHovered ? '0 8px 16px rgba(0, 123, 255, 0.4)' : '0 2px 8px rgba(0, 123, 255, 0.2)'
+                   }}>
+                {index + 1}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Bottom section */}
+        <div className="row mt-3 pt-3 border-top">
+          <div className="col-12 text-center">
+            <small className="text-muted fw-medium">
+              <i className="fas fa-eye me-2"></i>
+              Click to view detailed information
+              <i className="fas fa-arrow-right ms-2"
+                 style={{
+                   transform: isHovered ? 'translateX(5px)' : 'translateX(0)',
+                   transition: 'all 0.3s ease'
+                 }}></i>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Typing Animation Component
 interface TypingAnimationProps {
   text: string;
@@ -389,7 +579,7 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Updated Professional Experience Section with Animated Cards */}
       <section className="py-5 bg-light">
         <div className="container">
           <h2 className="text-center mb-5">
@@ -399,44 +589,11 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           <div className="row">
             {experiences.map((exp, index) => (
               <div key={index} className="col-lg-12 mb-4">
-                <div 
-                  className={`card card-hover border-0 shadow-sm bounce-in-up ${getStaggeredDelay(index)}`}
-                  style={{ cursor: 'pointer' }}
+                <TiltedExperienceCard
+                  experience={exp}
                   onClick={() => setSelectedExperience(exp)}
-                  data-bs-toggle="modal"
-                  data-bs-target="#experienceModal"
-                >
-                  <div className="card-body">
-                    <div className="row">
-                      <div className="col-md-8">
-                        <h5 className="card-title text-primary">{exp.position}</h5>
-                        <h6 className="text-muted mb-2">{exp.company}</h6>
-                        <p className="card-text">{exp.description}</p>
-                      </div>
-                      <div className="col-md-4 text-md-end">
-                        <span className="badge bg-primary mb-3">{exp.duration}</span>
-                        <div className="d-flex flex-wrap gap-1 justify-content-md-end">
-                          {exp.technologies.slice(0, 3).map((tech, techIndex) => (
-                            <span key={techIndex} className="badge bg-secondary small">
-                              {tech}
-                            </span>
-                          ))}
-                          {exp.technologies.length > 3 && (
-                            <span className="badge bg-light text-dark small">
-                              +{exp.technologies.length - 3} more
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-end mt-2">
-                      <small className="text-muted">
-                        <i className="fas fa-eye me-1"></i>
-                        Click to view details
-                      </small>
-                    </div>
-                  </div>
-                </div>
+                  index={index}
+                />
               </div>
             ))}
           </div>
@@ -635,7 +792,7 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
         </div>
       </div>
 
-      {/* CSS Styles for Typing Animation */}
+      {/* CSS Styles for Typing Animation and TiltedCard */}
       <style>{`
         .typing-cursor {
           animation: blink 0.8s infinite;
@@ -665,6 +822,133 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
         .button-hover:hover {
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* Experience Card Container */
+        .experience-card-container {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* TiltedCard Overlay Styles */
+        .tilted-card-overlay {
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+          border-radius: 8px;
+          backdrop-filter: blur(5px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tilted-card-demo-text {
+          color: white;
+          font-weight: 600;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+          margin: 0;
+        }
+
+        /* Card Hover Effects */
+        .card-hover {
+          transition: all 0.3s ease;
+          border: 1px solid transparent;
+        }
+
+        .card-hover:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+          border-color: #007bff;
+        }
+
+        .bounce-hover:hover {
+          animation: bounceHover 0.6s ease;
+        }
+
+        @keyframes bounceHover {
+          0%, 20%, 60%, 100% { transform: translateY(-8px); }
+          40% { transform: translateY(-12px); }
+          80% { transform: translateY(-5px); }
+        }
+
+        /* Professional Section Enhancements */
+        .experience-card-container .card {
+          flex-grow: 1;
+          background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+          border-left: 4px solid #007bff;
+        }
+
+        .experience-card-container .card:hover {
+          border-left-color: #0056b3;
+          background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        /* Badge Enhancements */
+        .badge.bg-secondary {
+          background: linear-gradient(45deg, #6c757d, #495057) !important;
+          color: white;
+          transition: all 0.2s ease;
+        }
+
+        .badge.bg-secondary:hover {
+          background: linear-gradient(45deg, #495057, #343a40) !important;
+          transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+          .experience-card-container {
+            margin-bottom: 2rem;
+          }
+          
+          .tilted-card-overlay {
+            padding: 0.75rem !important;
+          }
+          
+          .tilted-card-overlay h6 {
+            font-size: 0.9rem;
+          }
+          
+          .tilted-card-overlay p {
+            font-size: 0.8rem;
+          }
+        }
+
+        /* Achievement Icons */
+        .achievement-icon {
+          transition: all 0.3s ease;
+        }
+
+        .achievement-icon:hover {
+          transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Project Cards */
+        .project-card {
+          background: linear-gradient(135deg, #ffffff 0%, #f1f3f4 100%);
+          border-left: 4px solid #28a745;
+          transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+          border-left-color: #1e7e34;
+          background: linear-gradient(135deg, #f1f3f4 0%, #e2e6ea 100%);
+        }
+
+        /* Modal Enhancements */
+        .modal-content {
+          border: none;
+          border-radius: 15px;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+          border-bottom: 1px solid #e9ecef;
+          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+          border-radius: 15px 15px 0 0;
+        }
+
+        .modal-footer {
+          border-top: 1px solid #e9ecef;
+          background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+          border-radius: 0 0 15px 15px;
         }
       `}</style>
     </div>
