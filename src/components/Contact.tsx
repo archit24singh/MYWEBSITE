@@ -95,19 +95,27 @@ const Contact: React.FC = () => {
         <div className="container">
           <div className="row align-items-center">
             {/* Left side - ProfileCard */}
-            <div className="col-lg-6 d-flex justify-content-center mb-4 mb-lg-0">
-              <ProfileCard
+            <div className="col-lg-6 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
+              <div className="profile-card-container" style={{ 
+                maxWidth: '400px', 
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <ProfileCard
                 name="Archit Singh"
-                title="Full Stack Developer"
+                title="Software Developer"
                 handle="archit24singh"
                 status="Available for Projects"
                 contactText="Contact Me"
-                avatarUrl="../../profile.jpg" // Replace with your actual avatar URL
+                avatarUrl="/profile.jpg"
                 showUserInfo={true}
                 enableTilt={true}
                 enableMobileTilt={false}
                 onContactClick={handleContactClick}
-              />
+                />
+              </div>
             </div>
             
             {/* Right side - Hero Content */}

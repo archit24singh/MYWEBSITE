@@ -82,16 +82,43 @@ const TiltedExperienceCard: React.FC<TiltedExperienceCardProps> = ({
           <div className="col-md-8">
             <div className="d-flex align-items-center mb-3">
               <div className="experience-icon me-3">
-                <i className="fas fa-briefcase fa-2x text-primary" 
+                <i className={`fas ${experience.company === "MatchReply.AI" ? "fa-crown" : "fa-briefcase"} fa-2x text-primary`}
                    style={{ 
                      transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1)',
-                     transition: 'all 0.3s ease'
+                     transition: 'all 0.3s ease',
+                     color: experience.company === "MatchReply.AI" ? '#ffc107' : undefined
                    }}
                 ></i>
               </div>
               <div>
                 <h5 className="card-title text-primary fw-bold mb-1">{experience.position}</h5>
                 <h6 className="text-secondary mb-0">{experience.company}</h6>
+                {experience.company === "MatchReply.AI" && (
+                  <div className="mt-1">
+                    <a 
+                      href="https://matchreply.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-decoration-none small"
+                      style={{
+                        color: '#007bff',
+                        fontWeight: '500',
+                        transition: 'all 0.3s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = '#0056b3';
+                        e.currentTarget.style.textDecoration = 'underline';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = '#007bff';
+                        e.currentTarget.style.textDecoration = 'none';
+                      }}
+                    >
+                      <i className="fas fa-external-link-alt me-1"></i>
+                      matchreply.com
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
             <p className="card-text text-muted mb-3">{experience.description}</p>
@@ -120,6 +147,18 @@ const TiltedExperienceCard: React.FC<TiltedExperienceCardProps> = ({
                     }}>
                 {experience.duration}
               </span>
+              {(experience.company === "MatchReply.AI" || experience.company === "Omega Medical Billing Inc.") && (
+                <div className="mt-2">
+                  <span className="badge bg-success small px-2 py-1"
+                        style={{
+                          animation: 'pulse 2s infinite',
+                          boxShadow: '0 2px 4px rgba(40, 167, 69, 0.3)'
+                        }}>
+                    <i className="fas fa-circle me-1" style={{ fontSize: '0.6rem' }}></i>
+                    Current Position
+                  </span>
+                </div>
+              )}
             </div>
             
             {/* Technologies */}
@@ -321,6 +360,26 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
   }, []);
   
   const experiences: Experience[] = [
+    {
+      company: "MatchReply.AI",
+      position: "CEO / Tech Lead",
+      duration: "2025 - Present",
+      description: "Led the full product lifecycle for MatchReply, a generative AI-powered messaging platform focused on customizable, context-aware responses.",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "OpenAI API", "Supabase", "Stripe", "REST APIs", "Jest", "Vercel"],
+      detailedDescription: [
+        "Led the full product lifecycle for MatchReply, a generative AI-powered messaging platform focused on customizable, context-aware responses",
+        "Architected and developed the React + TypeScript frontend, integrating OpenAI APIs with dynamic prompt construction driven by user input and selected tone/style",
+        "Built and managed subscription-tier access logic, differentiating behavior for free and paid users, including redirect flows, feature gating, and Stripe billing integration",
+        "Redesigned UI/UX components to simplify interaction—merging inputs, conditionally rendering based on user status, and tailoring layouts for mobile and desktop experiences",
+        "Directed and maintained end-to-end testing strategies for prompt validation, OpenAI error handling, and conditional rendering under real-world user scenarios"
+      ],
+      keyResponsibilities: [
+        "Launched a custom AI reply system allowing paid users to generate responses using structured prompts combining user input and selectable tone",
+        "Improved user engagement by reducing interaction friction through intuitive design updates and context-aware input handling",
+        "Identified and resolved critical bugs affecting mobile redirects, subscription handling, and malformed API requests, ensuring cross-device reliability",
+        "Delivered a modular and scalable frontend foundation ready for expansion into multi-model support and enterprise use cases"
+      ]
+    },
     {
       company: "Omega Medical Billing Inc.",
       position: "Software Developer",
