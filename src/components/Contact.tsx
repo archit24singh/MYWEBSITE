@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import ProfileCard from './ProfileCard';
 
 interface ContactForm {
@@ -56,14 +57,23 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      // Create mailto link with form data
-      const mailtoLink = `mailto:architbenipal77@gmail.com?subject=${encodeURIComponent(formData.subject || 'Website Contact Form')}&body=${encodeURIComponent(
-        `Name: ${formData.name}\n` +
-        `Email: ${formData.email}\n\n` +
-        `Message:\n${formData.message}`
-      )}`;
+      // EmailJS configuration - You'll need to replace these with your actual values
+      const serviceId = 'YOUR_SERVICE_ID';
+      const templateId = 'YOUR_TEMPLATE_ID';
+      const publicKey = 'YOUR_PUBLIC_KEY';
       
-      window.location.href = mailtoLink;
+      // Template parameters that match your EmailJS template
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'architbenipal77@gmail.com'
+      };
+      
+      // Send email using EmailJS
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
       setSubmitStatus('success');
       
       // Reset form
@@ -74,6 +84,7 @@ const Contact: React.FC = () => {
         message: ''
       });
     } catch (error) {
+      console.error('EmailJS Error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -161,14 +172,14 @@ const Contact: React.FC = () => {
                   {submitStatus === 'success' && (
                     <div className="alert alert-success">
                       <i className="fas fa-check-circle me-2"></i>
-                      Your message has been prepared! Your email client should open shortly.
+                      Thank you! Your message has been sent successfully. I'll get back to you within 24 hours.
                     </div>
                   )}
                   
                   {submitStatus === 'error' && (
                     <div className="alert alert-danger">
                       <i className="fas fa-exclamation-circle me-2"></i>
-                      There was an error. Please try emailing me directly at architbenipal77@gmail.com
+                      There was an error sending your message. Please try again or email me directly at architbenipal77@gmail.com
                     </div>
                   )}
 

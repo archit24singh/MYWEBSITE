@@ -361,6 +361,31 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
   
   const experiences: Experience[] = [
     {
+      company: "Omega Medical Billing Inc.",
+      position: "Software Developer",
+      duration: "2024 - Present",
+      description: "Leading development of scalable web applications using modern technologies. Mentoring junior developers and architecting solutions for complex business requirements.",
+      technologies: ["React", "Angular", "Node.js", "PostgreSQL", "GraphQL", "AWS", "Terraform"],
+      detailedDescription: [
+        "Developed innovative software solutions architecting Angular and React-based medical billing platform from concept to deployment, managing complete application lifecycle serving 10,000+ users",
+        "Designed and architected a secure, HIPAA-compliant cloud infrastructure on AWS to support the deployment and operation of a large-scale Generative AI medical coding assistant",
+        "Engineered the complete data ingestion and embedding pipeline, architecting a high-availability PostgreSQL instance with pgvector on RDS for efficient and scalable similarity searches",
+        "Developed and implemented an MLOps strategy for the deployment, versioning, and monitoring of large language models (LLMs), utilizing containerization (Docker) and orchestration (Kubernetes/ECS) for scalable inference endpoints",
+        "Implemented end-to-end security protocols, including network isolation within a VPC, encryption at rest and in transit, and granular IAM policies to ensure data protection and regulatory compliance",
+        "Conducted performance and cost-optimization analysis of the AI infrastructure, reducing projected operational costs by over 20% through strategic cloud resource management and auto-scaling policies",
+        "Collaborated with UX designers and stakeholders to translate business requirements into engaging, accessible user experiences for web and mobile applications",
+        "Created personalized UI analytics dashboards using modern JavaScript frameworks with responsive design and data visualization components",
+        "Implemented real-time features using WebSockets for live data updates and seamless user interactions in dashboard applications",
+        "Led frontend development initiatives working independently and in collaborative team environments, providing constructive feedback and exploring alternative solutions"
+      ],
+      keyResponsibilities: [
+        "Managing project scopes and estimates from initial client needs assessment through solution delivery and performance optimization",
+        "Building full-stack applications using React and Node.js with PostgreSQL database, implementing GraphQL APIs and modern serverless deployment practices with Terraform infrastructure management",
+        "Leading technical architecture decisions for medical billing platform serving 10,000+ users",
+        "Collaborating with cross-functional teams to deliver scalable healthcare solutions"
+      ]
+    },
+    {
       company: "MatchReply.AI",
       position: "CEO / Tech Lead",
       duration: "2025 - Present",
@@ -378,26 +403,6 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
         "Improved user engagement by reducing interaction friction through intuitive design updates and context-aware input handling",
         "Identified and resolved critical bugs affecting mobile redirects, subscription handling, and malformed API requests, ensuring cross-device reliability",
         "Delivered a modular and scalable frontend foundation ready for expansion into multi-model support and enterprise use cases"
-      ]
-    },
-    {
-      company: "Omega Medical Billing Inc.",
-      position: "Software Developer",
-      duration: "2024 - Present",
-      description: "Leading development of scalable web applications using modern technologies. Mentoring junior developers and architecting solutions for complex business requirements.",
-      technologies: ["React", "Angular", "Node.js", "PostgreSQL", "GraphQL", "AWS", "Terraform"],
-      detailedDescription: [
-        "Developed innovative software solutions architecting Angular and React-based medical billing platform from concept to deployment, managing complete application lifecycle serving 10,000+ users",
-        "Collaborated with UX designers and stakeholders to translate business requirements into engaging, accessible user experiences for web and mobile applications",
-        "Created personalized UI analytics dashboards using modern JavaScript frameworks with responsive design and data visualization components",
-        "Implemented real-time features using WebSockets for live data updates and seamless user interactions in dashboard applications",
-        "Led frontend development initiatives working independently and in collaborative team environments, providing constructive feedback and exploring alternative solutions"
-      ],
-      keyResponsibilities: [
-        "Managing project scopes and estimates from initial client needs assessment through solution delivery and performance optimization",
-        "Building full-stack applications using React and Node.js with PostgreSQL database, implementing GraphQL APIs and modern serverless deployment practices with Terraform infrastructure management",
-        "Leading technical architecture decisions for medical billing platform serving 10,000+ users",
-        "Collaborating with cross-functional teams to deliver scalable healthcare solutions"
       ]
     },
     {
@@ -599,12 +604,12 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
 
               {/* Subtitle - No Animation */}
               <h2 className="h2 mb-4 text-light" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
-                Software Developer & Full Stack Developer
+                Software Developer & AI Infrastructure Architect
               </h2>
 
               {/* Description - No Animation */}
               <p className="lead mb-5 fs-4" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.6)' }}>
-                Software developer with 8+ years of experience creating innovative software solutions and managing complete application lifecycles using modern technologies. Expert in frontend development with strong background in cybersecurity and scalable system architecture.
+                A Software Developer with over 8 years of experience specializing in the design, development, and deployment of secure and scalable Generative AI solutions. My expertise lies in managing the complete lifecycle of AI applications, from architecting robust backend infrastructure to building intuitive user interfaces.
               </p>
 
               {/* Skills - No Animation */}
