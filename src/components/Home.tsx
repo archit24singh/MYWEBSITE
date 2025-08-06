@@ -365,9 +365,9 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
       position: "Software Developer & AI Infrastructure Architect",
       duration: "2024 - Present",
       description: "Leading development of scalable web applications using modern technologies. Mentoring junior developers and architecting solutions for complex business requirements.",
-      technologies: ["React", "Angular", "Node.js", "PostgreSQL", "GraphQL", "AWS", "Terraform"],
+      technologies: ["React", "TypeScript", "Next.js", "PostgreSQL", "AWS",],
       detailedDescription: [
-        "Developed innovative software solutions architecting Angular and React-based medical billing platform from concept to deployment, managing complete application lifecycle serving 10,000+ users",
+        "Developed innovative software solutions architecting React-based medical billing platform from concept to deployment, managing complete application lifecycle serving 10,000+ users",
         "Designed and architected a secure, HIPAA-compliant cloud infrastructure on AWS to support the deployment and operation of a large-scale Generative AI medical coding assistant",
         "Engineered the complete data ingestion and embedding pipeline, architecting a high-availability PostgreSQL instance with pgvector on RDS for efficient and scalable similarity searches",
         "Developed and implemented an MLOps strategy for the deployment, versioning, and monitoring of large language models (LLMs), utilizing containerization (Docker) and orchestration (Kubernetes/ECS) for scalable inference endpoints",
@@ -379,10 +379,12 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
         "Led frontend development initiatives working independently and in collaborative team environments, providing constructive feedback and exploring alternative solutions"
       ],
       keyResponsibilities: [
-        "Managing project scopes and estimates from initial client needs assessment through solution delivery and performance optimization",
-        "Building full-stack applications using React and Node.js with PostgreSQL database, implementing GraphQL APIs and modern serverless deployment practices with Terraform infrastructure management",
-        "Leading technical architecture decisions for medical billing platform serving 10,000+ users",
-        "Collaborating with cross-functional teams to deliver scalable healthcare solutions"
+        "Spearheaded the end-to-end development of a distributed, GenAI-powered Medical Coding Assistant, leveraging LLM fundamentals to automate complex billing workflows.",
+        "Engineered scalable Python data pipelines on AWS for real-time data ingestion, processing, and vectorization into a PostgreSQL database.",
+        "Architected and deployed the entire cloud infrastructure for the AI service using AWS and Docker, ensuring high availability and fault tolerance.",
+        "Constructed a comprehensive MLOps CI/CD pipeline using GitHub Actions for automated model versioning, validation, and deployment.",
+        "Developed internal tools with a React frontend and NodeJS backend to streamline the prototyping and maintenance of AI-powered features.",
+        "Mentored two junior engineers on cloud-native development and best practices for building distributed systems."
       ]
     },
     {
@@ -418,10 +420,12 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
         "Led technical discussions on application architecture, performance optimization, and modern development methodologies"
       ],
       keyResponsibilities: [
-        "Collaborating with distributed teams using agile practices and proactive communication across multiple projects",
-        "Conducting AI research projects focused on practical applications",
-        "Teaching and mentoring students in modern web development practices",
-        "Contributing to academic research in AI and software engineering"
+        "Contributed to the development of distributed web applications, utilizing a PostgreSQL backend for efficient data management for university services.",
+        "Designed and implemented Python scripts for data analysis and processing in support of AI research projects.",
+        "Built and maintained internal tools using React and TypeScript, interacting with RESTful APIs from a NodeJS backend.",
+        "Assisted in maintaining CI/CD pipelines for the automated testing and deployment of student-facing web applications on university cloud infrastructure.",
+        "Enhanced the performance and accessibility of student-facing portals, ensuring compliance with WCAG 2.1 standards.",
+        "Fostered a collaborative environment by working closely with faculty and researchers to meet project deadlines."
       ]
     },
     {
@@ -447,18 +451,20 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
       position: "Fullstack Developer Senior Analyst",
       duration: "08/2021 - 12/2022",
       description: "Developed responsive web applications and collaborated with UX/UI designers to create exceptional user experiences.",
-      technologies: ["React", "Angular", "JavaScript", "SASS", "Redux", "Firebase"],
+      technologies: ["React", "TypeScript", "JavaScript", "PostgreSQL","DynamoDB"],
       detailedDescription: [
-        "Led innovative software solution development building React and Angular applications serving 50,000+ enterprise users with focus on user experience",
+        "Led innovative software solution development building React applications serving 50,000+ enterprise users with focus on user experience",
         "Collaborated with consultants and UX teams to develop client-facing applications with responsive design and modern CSS frameworks",
         "Managed application lifecycles from requirements gathering through deployment, ensuring performance optimization and accessibility standards",
         "Translated business requirements into scalable software solutions working independently and in collaborative team environments"
       ],
       keyResponsibilities: [
-        "Leading development teams and architectural decisions for enterprise applications",
-        "Implementing UI analytics dashboards with real-time data visualization and personalized user experiences",
-        "Managing client relationships and technical consultations",
-        "Ensuring enterprise-level security and performance standards"
+        "Developed components for large-scale, distributed financial applications for enterprise clients using React, TypeScript, and NodeJS.",
+        "Operated within a modern CI/CD environment, utilizing Docker containers and AWS for consistent development and deployment across teams.",
+        "Partnered with backend teams to integrate complex APIs, ensuring seamless data flow from sources including Postgres and DynamoDB.",
+        "Utilized Python for scripting and data manipulation tasks to support backend services and data validation pipelines.",
+        "Established and documented best practices for semantic markup, accessibility, and component architecture for a team of 15+ developers.",
+        "Championed the reduction of code complexity by refactoring legacy systems and introducing modern design patterns."
       ]
     },
     {
@@ -468,16 +474,19 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
       description: "Built and maintained web applications while learning modern development practices and agile methodologies.",
       technologies: ["React", "AI/ML","TypeScript", "HTML5", "CSS3", "Python", "Django","Java","OpenAI","TensorFlow"],
       detailedDescription: [
-        "Developed high-performance web applications for trading platforms using React, JavaScript, HTML5, and CSS3 with strict user experience requirements",
+        "Developed high-performance web applications for trading platforms using React, TypeScript, HTML5, and CSS3 with strict user experience requirements",
         "Built responsive UI components translating complex business processes into intuitive user interfaces for financial applications",
         "Implemented comprehensive testing strategies conducting browser and mobile device testing to ensure consistent user experience",
         "Collaborated with UX/UI designers to create engaging, accessible interfaces processing millions of user interactions"
       ],
       keyResponsibilities: [
-        "Optimizing application performance for high-frequency systems ensuring optimal user experience under heavy load",
-        "Working independently on multiple projects writing code from scratch and taking ownership of complete feature development",
-        "Developing financial trading platforms with real-time data processing",
-        "Implementing security measures for high-stakes financial applications"
+        "Gained proficiency with a modern full-stack environment, including React, TypeScript, NodeJS, and CI/CD tools.",
+        "Wrote and maintained clean, reusable code within a large, collaborative enterprise environment.",
+        "Assisted in writing and optimizing database queries for application data stores, including PostgreSQL and Redis.",
+        "Gained expertise in modern frontend best practices, including performance optimization for Core Web Vitals.",
+        "Contributed to building internal component libraries to improve the quality and consistency of the primary codebase.",
+        "Gained hands-on experience with deployment pipelines, including the use of Docker and AWS services for financial web applications."
+        
       ]
     }
   ];
@@ -492,7 +501,6 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
         "Led architecture and delivery of 5+ complex engineering initiatives serving 100,000+ users",
         "Designed fault-tolerant, scalable platforms resilient to infrastructure-level failures",
         "Successfully migrated 3 monolithic systems to microservices using strangulation patterns and anti-corruption layers",
-        "Architected centralized Angular component library using NX monorepo structure",
         "Created 50+ reusable UI components with Storybook documentation, reducing development time by 45% across 3 product teams"
       ],
       impact: "Improved system scalability by 300% and reduced development time by 45% across multiple product teams"
@@ -563,8 +571,8 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
   ];
 
   const skills = [
-    "JavaScript", "TypeScript", "React", "Angular", "Node.js", "Python", 
-    "AWS", "GraphQL", "PostgreSQL", "MongoDB", "Docker", "Kubernetes"
+    "TypeScript", "React", "AWS","Python", 
+    "PostgreSQL", "Docker", "DynamoDB", "Kubernetes"
   ];
 
   return (
