@@ -362,7 +362,7 @@ const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
   const experiences: Experience[] = [
     {
       company: "Omega Medical Billing Inc.",
-      position: "Software Developer & AI Infrastructure Architect",
+      position: "Software Developer & Growth Engineer",
       duration: "2024 - Present",
       description: "Leading development of scalable web applications using modern technologies. Mentoring junior developers and architecting solutions for complex business requirements.",
       technologies: ["React", "TypeScript", "Next.js", "PostgreSQL", "AWS",],
